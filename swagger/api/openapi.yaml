@@ -14,7 +14,7 @@ paths:
       tags:
       - Reviews
       summary: Obtener todas las reviews de un juego
-      operationId: getReviewsByIdJuego
+      operationId: obtenerReviewsPorIdJuego
       parameters:
       - name: id_juego
         in: path
@@ -43,7 +43,7 @@ paths:
       tags:
       - Reviews
       summary: Crear una nueva review
-      operationId: createReview
+      operationId: crearReview
       requestBody:
         content:
           application/json:
@@ -61,7 +61,7 @@ paths:
       tags:
       - Reviews
       summary: Obtener una review por id_review
-      operationId: getReviewById
+      operationId: obtenerReviewPorId
       parameters:
       - name: id_review
         in: path
@@ -86,7 +86,7 @@ paths:
       tags:
       - Reviews
       summary: Actualizar una review por id_review
-      operationId: updateReviewById
+      operationId: actualizarReviewPorId
       parameters:
       - name: id_review
         in: path
@@ -115,7 +115,7 @@ paths:
       tags:
       - Reviews
       summary: Eliminar una review por id_review
-      operationId: deleteReviewById
+      operationId: eliminarReviewPorId
       parameters:
       - name: id_review
         in: path
