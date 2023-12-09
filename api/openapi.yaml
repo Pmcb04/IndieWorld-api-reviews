@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: API de Reviews
+  description: API para la gestión de reviews en una plataforma de videojuegos
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/Devgram/APIReviews/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://virtserver.swaggerhub.com/Devgram/Practica2/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /reviews/juegos/{id_juego}:
+    get:
+      tags:
+      - Reviews
+      summary: Obtener todas las reviews de un juego
+      operationId: obtenerReviewsPorIdJuego
+      parameters:
+      - name: id_juego
+        in: path
+        description: ID del juego del que se van a consultar sus reviews
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Lista de reviews de un juego obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+                x-content-type: application/json
+        "404":
+          description: Reviews no encontradas para el juego
+      x-swagger-router-controller: Reviews
+  /reviews:
+    post:
+      tags:
+      - Reviews
+      summary: Crear una nueva review
+      operationId: crearReview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      responses:
+        "201":
+          description: Review creada exitosamente
+        "404":
+          description: La review no se ha podido publicar
+      x-swagger-router-controller: Reviews
+  /reviews/{id_review}:
+    get:
+      tags:
+      - Reviews
+      summary: Obtener una review por id_review
+      operationId: obtenerReviewPorId
+      parameters:
+      - name: id_review
+        in: path
+        description: "ID de la review a consultar, actualizar o eliminar"
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Review obtenida correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "404":
+          description: Review no encontrada
+      x-swagger-router-controller: Reviews
+    put:
+      tags:
+      - Reviews
+      summary: Actualizar una review por id_review
+      operationId: actualizarReviewPorId
+      parameters:
+      - name: id_review
+        in: path
+        description: "ID de la review a consultar, actualizar o eliminar"
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      responses:
+        "200":
+          description: Review actualizada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+      x-swagger-router-controller: Reviews
+    delete:
+      tags:
+      - Reviews
+      summary: Eliminar una review por id_review
+      operationId: eliminarReviewPorId
+      parameters:
+      - name: id_review
+        in: path
+        description: "ID de la review a consultar, actualizar o eliminar"
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: Review eliminada correctamente
+        "404":
+          description: Review no encontrada para eliminar
+      x-swagger-router-controller: Reviews
+components:
+  schemas:
+    Review:
+      required:
+      - contenido
+      - fecha_publicacion
+      - id_juego
+      - id_review
+      - id_usuario
+      - valoracion
+      type: object
+      properties:
+        id_review:
+          type: integer
+        id_usuario:
+          type: integer
+        id_juego:
+          type: integer
+        fecha_publicacion:
+          type: string
+        contenido:
+          type: string
+        valoracion:
+          type: integer
+      example:
+        contenido: contenido
+        id_usuario: 6
+        id_review: 0
+        valoracion: 5
+        id_juego: 1
+        fecha_publicacion: fecha_publicacion
