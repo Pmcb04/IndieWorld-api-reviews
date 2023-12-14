@@ -4,10 +4,8 @@ info:
   description: API para la gestión de reviews en una plataforma de videojuegos
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/Devgram/APIReviews/1.0.0
-  description: SwaggerHub API Auto Mocking
-- url: https://virtserver.swaggerhub.com/Devgram/Practica2/1.0.0
-  description: SwaggerHub API Auto Mocking
+- url: https://indie-world-api-reviews.vercel.app/Devgram/APIReviews/1.0.0
+  description: Vercel Server Production
 paths:
   /reviews/juegos/{id_juego}:
     get:
