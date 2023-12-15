@@ -138,3 +138,16 @@ exports.obtenerReviewsPorIdJuego = function(id_juego) {
 function generateReviewId() {
   return Math.max(...reviewsDB.map(review => review.id_review), 0) + 1;
 }
+
+const Prometheus = require('prom-client');
+
+/**
+ * getMetrics
+ * Endpoint to retrieve Prometheus metrics
+ * @returns {Promise} Promise object represents the handling of the metrics endpoint
+ **/
+exports.getMetrics = function() {
+  return new Promise(function(resolve, reject) {
+    resolve(Prometheus.register.metrics())
+  });
+};

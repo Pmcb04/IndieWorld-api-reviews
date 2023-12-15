@@ -130,6 +130,20 @@ paths:
         "404":
           description: Review no encontrada para eliminar
       x-swagger-router-controller: Reviews
+
+  /metrics:
+    get:
+      tags:
+      - Reviews
+      summary: Obtiene metricas de la api
+      description: Obtiene metricas de la api
+      operationId: getMetrics
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: Reviews
 components:
   schemas:
     Review:
